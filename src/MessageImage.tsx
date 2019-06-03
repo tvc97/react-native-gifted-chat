@@ -8,6 +8,7 @@ import {
   ImageProps,
   ViewStyle,
   ImageStyle,
+  ScrollView,
 } from 'react-native'
 // @ts-ignore
 import Lightbox from 'react-native-lightbox'
@@ -69,13 +70,20 @@ export default class MessageImage extends Component<MessageImageProps> {
             activeProps={{
               style: styles.imageActive,
             }}
+            swipeToDismiss={false}
             {...lightboxProps}
           >
-            <Image
-              {...imageProps}
-              style={[styles.image, imageStyle]}
-              source={{ uri: currentMessage.image }}
-            />
+            <ScrollView
+              minimumZoomScale={1}
+              maximumZoomScale={2}
+              centerContent={true}
+            >
+              <Image
+                {...imageProps}
+                style={[styles.image, imageStyle]}
+                source={{ uri: currentMessage.image }}
+              />
+            </ScrollView>
           </Lightbox>
         </View>
       )
